@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 
 const tasks = [
   {
@@ -26,18 +27,64 @@ class App extends React.Component {
         tasks
     }
   }
+  
+  //Event Handler for ToDo Items
+    toggleComplete = taskId => {
+      console.log(taskId)
+      this.setState({
+        tasks: this.state.tasks.map(task => {
+          if (taskId === task.id) {
+            return {
+              ...task,
+              completed: !task.completed
+            };
+          }
+          return task
+        })
+      })
+    }
 
-
+//Event Handlers for ToDo Form
+  setTask = (e, item) => {
+    e.preventDefault();
+    const newTask = {
+      id: Date.now(),
+      task: item,
+      completed: false
+    };  
+    this.setState({
+      tasks: [...this.state.tasks, newTask]
+    });  
+  };    
   formHandler = e => {
     this.setState({ [e.target.name]: e.target.value})
   }
+  formSubmit = e => {
+    e.preventDefault()
+    this.setState({ item: ''})
+    this.setTask(e, this.state.todo)
+  }
+  clearComplete = e => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.filter(task => !task.completed)
+    });
+  };
+
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList 
-        tasks={this.state.tasks}/>
+        tasks={this.state.tasks}
+        toggle={this.toggleComplete}/>
+        <TodoForm 
+        todo={this.state.todo}
+        onChange={this.formHandler}
+        onSubmit={this.formSubmit}
+        clearTasks={this.clearComplete}
+        />
       </div>
     );
   }

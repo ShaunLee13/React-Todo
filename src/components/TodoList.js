@@ -10,13 +10,18 @@ class TodoList extends React.Component {
 
         }
     }
-
+//Length of Tasks = 0 ? <h2>No More Tasks!</h2><h3>...for now.</h3> : map
     render() {
         return(
             <div>
-                {this.props.tasks.map(item => (
-                    <Todo key={item.id} task={item.task}/>
-        ))}
+                {this.props.tasks.length === 0 ? <div><h2>No More Tasks!</h2><h3>...for now.</h3></div>: this.props.tasks.map(item => (
+                    <Todo 
+                    key={item.id} 
+                    task={item.task}
+                    id={item.id}
+                    completed={item.completed}
+                    toggle={this.props.toggle}/>
+                    ))}
             </div>
         )
     }
