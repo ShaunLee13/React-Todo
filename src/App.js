@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import './components/Todo.css'
 
 const tasks = [
   {
@@ -61,7 +62,7 @@ class App extends React.Component {
   }
   formSubmit = e => {
     e.preventDefault()
-    this.setState({ item: ''})
+    this.setState({ todo: ''})
     this.setTask(e, this.state.todo)
   }
   clearComplete = e => {
@@ -74,12 +75,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className='App-Container'>
+        <h1>Welcome to your Todo App!</h1>
         <TodoList 
         tasks={this.state.tasks}
         toggle={this.toggleComplete}/>
-        <TodoForm 
+        <TodoForm
+        className='form' 
         todo={this.state.todo}
         onChange={this.formHandler}
         onSubmit={this.formSubmit}
