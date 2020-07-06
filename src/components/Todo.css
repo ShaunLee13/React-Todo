@@ -1,0 +1,30 @@
+.complete {
+    text-decoration: line-through;
+}
+
+.App-Container {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.task {
+    padding-left: 15px;
+    text-align: center;
+}
+
+.form-container {
+    padding: 0 0 30px 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.clear {
+    margin-top: 10px;
+}
